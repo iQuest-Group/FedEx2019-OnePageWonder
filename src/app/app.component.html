@@ -8,13 +8,28 @@
     </div>
   </form>
 
-  <div *ngFor="let video of videos" style="float: left; width: 560px; padding-bottom: 30px; padding-right: 40px">
-    <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + video.id.videoId | safe" frameborder="0"
-      allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-    </iframe>
-    <div style="font-size: large; padding-top: 5px;">
-      <div *ngIf="video.snippet" style="color: gray;">{{getDateUtc(video.snippet.publishedAt) | date:'MMMM d, yyyy'}}</div>
-      <div *ngIf="video.statistics">{{video.statistics.viewCount | number}} views</div>
+  <div *ngIf="showSearchResults" style="padding-bottom: 50px;">
+    <div *ngFor="let video of videos" style="float: left; width: 360px; padding-bottom: 30px; padding-right: 40px">
+      <img src="https://i.ytimg.com/vi/{{video.id.videoId}}/mqdefault.jpg" />
+      <div>
+        <input type="checkbox" [(ngModel)]="video.selected" />
+        {{video.snippet.title.length > 40 ? video.snippet.title.substring(0, 40) + '...' : video.snippet.title}}
+      </div>
+      <div style="color: gray;">{{getDateUtc(video.snippet.publishedAt) | date:'MMMM d, yyyy'}}</div>
+      <div>{{video.statistics.viewCount | number}} views</div>
+    </div>
+    <button (click)="generatePage()" style="height: 32px; width: 100px;">Continue</button>
+  </div>
+
+  <div *ngIf="showSelectedVideos">
+    <div *ngFor="let video of videos" style="float: left; width: 560px; padding-bottom: 30px; padding-right: 40px">
+      <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + video.id.videoId | safe" frameborder="0"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+      <div style="font-size: large; padding-top: 5px;">
+        <div style="color: gray;">{{getDateUtc(video.snippet.publishedAt) | date:'MMMM d, yyyy'}}</div>
+        <div>{{video.statistics.viewCount | number}} views</div>
+      </div>
     </div>
   </div>
 </div>

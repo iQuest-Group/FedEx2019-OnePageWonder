@@ -11,9 +11,15 @@ export class AppComponent {
   artist: string;
   videos: any[];
 
+  showSearchResults: boolean;
+  showSelectedVideos: boolean;
+
   constructor(private youTubeService: YoutubeService) { }
 
   search(): void {
+    this.showSearchResults = false;
+    this.showSelectedVideos = false;
+
     this.actualSearch();
 
     // this.dummySearch();
@@ -41,7 +47,13 @@ export class AppComponent {
         for (let index = 0; index < result["items"].length; index++) {
           this.videos[index].statistics = {};
           this.videos[index].statistics.viewCount = result["items"][index].statistics.viewCount;
+
+          if (index < 6) {
+            this.videos[index].selected = true;
+          }
         }
+
+        this.showSearchResults = true;
       });
   }
 
@@ -59,6 +71,21 @@ export class AppComponent {
     return videoIds;
   }
 
+  generatePage(): void {
+    const selectedVideos= [];
+
+    for (let video of this.videos) {
+      if (video.selected) {
+        selectedVideos.push(video);
+      }
+    }
+
+    this.videos = selectedVideos;
+
+    this.showSearchResults = false;
+    this.showSelectedVideos = true;
+  }
+
   dummySearch() {
     this.videos = this.youTubeService.dummySearch();
 
@@ -71,7 +98,13 @@ export class AppComponent {
     for (let index = 0; index < videoStatistics.length; index++) {
       this.videos[index].statistics = {};
       this.videos[index].statistics.viewCount = videoStatistics[index].statistics.viewCount;
+
+      if (index < 6) {
+        this.videos[index].selected = true;
+      }
     }
+
+    this.showSearchResults = true;
   }
 
   getDateUtc(input: string): Date {
