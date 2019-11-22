@@ -1,1 +1,12 @@
 <h1>One Page Wonder</h1>
+
+<form>
+  <input type="text" [(ngModel)]="artist" name="artist" style="margin-right: 10px" />
+  <button (click)="search()">Search</button>
+</form>
+
+<div *ngFor="let video of videos" style="padding-bottom: 20px">
+  <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + video.id.videoId | safe" frameborder="0"
+    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>
+</div>
