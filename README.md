@@ -1,27 +1,15 @@
 # OnePageWonder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+A small web app that generates a page with the most viewed YouTube videos of a given artist, developed using Angular 8 (8.2.14) and YouTube API (Data API v3).
 
-## Development server
+Because the initial search results, which are ordered by view count, might not contain exactly the videos we want on the artist page, there is a screen to select from the search results the desired videos.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The YouTube API key is not included, but if you want to test this out it's easy to get one, and then you have to put it in `src\app\youtube.service.ts`, in the `apiKey` variable.
 
-## Code scaffolding
+### Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![](https://i.imgur.com/S0azU8H.png)
 
-## Build
+![](https://i.imgur.com/osZXw3k.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![](https://i.imgur.com/RSmrj2L.png)
