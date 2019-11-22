@@ -1,12 +1,20 @@
-<h1>One Page Wonder</h1>
+<div style="margin: auto; width: 1200px">
+  <h1>One Page Wonder</h1>
 
-<form>
-  <input type="text" [(ngModel)]="artist" name="artist" style="margin-right: 10px" />
-  <button (click)="search()">Search</button>
-</form>
+  <form>
+    <div style="padding-bottom: 30px">
+      <input type="text" [(ngModel)]="artist" name="artist" style="height:25px; font-size:14pt; margin-right: 10px" />
+      <button (click)="search()" style="height: 32px; width: 100px;">Search</button>
+    </div>
+  </form>
 
-<div *ngFor="let video of videos" style="padding-bottom: 20px">
-  <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + video.id.videoId | safe" frameborder="0"
-    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-  </iframe>
+  <div *ngFor="let video of videos" style="float: left; width: 560px; padding-bottom: 30px; padding-right: 40px">
+    <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/' + video.id.videoId | safe" frameborder="0"
+      allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+    <div style="font-size: large; padding-top: 5px;">
+      <div *ngIf="video.snippet" style="color: gray;">{{getDateUtc(video.snippet.publishedAt) | date:'MMMM d, yyyy'}}</div>
+      <div *ngIf="video.statistics">{{video.statistics.viewCount | number}} views</div>
+    </div>
+  </div>
 </div>
