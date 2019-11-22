@@ -72,7 +72,7 @@ export class AppComponent {
   }
 
   generatePage(): void {
-    const selectedVideos= [];
+    const selectedVideos = [];
 
     for (let video of this.videos) {
       if (video.selected) {

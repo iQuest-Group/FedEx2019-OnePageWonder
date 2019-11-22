@@ -12,7 +12,7 @@ export class YoutubeService {
   constructor(public http: HttpClient) { }
 
   search(query: string): Observable<Object> {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${this.apiKey}&maxResults=12&order=viewCount`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${query}&key=${this.apiKey}&maxResults=12&order=viewCount`;
 
     return this.http.get(url);
   }
